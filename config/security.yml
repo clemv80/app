@@ -4,8 +4,10 @@ security:
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory: ~
+        users:
+            entity:
+                class: BlogBundle:User
+                property: username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -13,8 +15,19 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
+        gestionBlog:
+            pattern: ^/(article|commentaire|role|signalementart|signalementcom|theme|user|login_check|logout)
+            form_login:
+                login_path: /login
+                check_path: /login_check
+            logout:
+                path: /logout
+                target: /accueil
+
+        accueil:
+            pattern: ^/
             anonymous: ~
+
             # activate different ways to authenticate
 
             # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate

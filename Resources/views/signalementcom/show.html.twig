@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Signalementcom</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ signalementCom.id }}</td>
+            </tr>
+            <tr>
+                <th>Creationdt</th>
+                <td>{% if signalementCom.creationdt %}{{ signalementCom.creationdt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('signalementcom_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('signalementcom_edit', { 'id': signalementCom.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

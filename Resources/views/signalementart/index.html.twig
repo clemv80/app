@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Signalementarts list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Creationdt</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for signalementArt in signalementArts %}
+            <tr>
+                <td><a href="{{ path('signalementart_show', { 'id': signalementArt.id }) }}">{{ signalementArt.id }}</a></td>
+                <td>{% if signalementArt.creationdt %}{{ signalementArt.creationdt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('signalementart_show', { 'id': signalementArt.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('signalementart_edit', { 'id': signalementArt.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('signalementart_new') }}">Create a new signalementArt</a>
+        </li>
+    </ul>
+{% endblock %}

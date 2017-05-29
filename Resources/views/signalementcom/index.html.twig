@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Signalementcoms list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Creationdt</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for signalementCom in signalementComs %}
+            <tr>
+                <td><a href="{{ path('signalementcom_show', { 'id': signalementCom.id }) }}">{{ signalementCom.id }}</a></td>
+                <td>{% if signalementCom.creationdt %}{{ signalementCom.creationdt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('signalementcom_show', { 'id': signalementCom.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('signalementcom_edit', { 'id': signalementCom.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('signalementcom_new') }}">Create a new signalementCom</a>
+        </li>
+    </ul>
+{% endblock %}

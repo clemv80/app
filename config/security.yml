@@ -9,6 +9,11 @@ security:
                 class: BlogBundle:User
                 property: username
 
+
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        BlogBundle\Entity\User: plaintext
+
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:

@@ -27,11 +27,15 @@ security:
                 check_path: /login_check
             logout:
                 path: /logout
-                target: /accueil
+                target: /login
 
         accueil:
             pattern: ^/
             anonymous: ~
+
+    access_control:
+        - { path: ^/(user|role)/$, roles: ROLE_ADMIN}
+        - { path: ^/theme/(new|delete|edit)$, roles: ROLE_ADMIN}
 
             # activate different ways to authenticate
 
